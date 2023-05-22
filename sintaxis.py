@@ -1,3 +1,4 @@
+#comentarios
 materia="OBJETOS I"
 print(materia)
 #tipos de datos
