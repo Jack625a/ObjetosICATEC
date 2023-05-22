@@ -4,6 +4,6 @@ print(materia)
 #datos simples
 #1 tipos de datos numericos
 print("1 Tipos de datos numericos")
-numero=45,45
+numero=50
 print(numero)
 #datos compuestos
