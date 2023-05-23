@@ -29,6 +29,13 @@ print("TIPOS DE DATOS LISTAS")
 colores=["rojo","verde","cafe","azul","rosado"]
 print(colores[2])
 
-#2.2. tipos de datos tuplas
-#2.3. tipos de datos diccionarios
 
+#2.2. tipos de datos tuplas
+print("TIPOS DE DATOS TUPLAS")
+nombre=("nombres",45,True)
+print(nombre[2])
+
+#2.3. tipos de datos diccionarios
+print("TIPOS DE DATOS DICCIONARIOS")
+paises={"nombre":"bolivia","numDep":9,"numHab":"12 millones","capital":"sucre"}
+print(paises["nombre"],paises["numHab"],paises["capital"])
