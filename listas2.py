@@ -17,4 +17,7 @@ print("La nota final es: ",notafinal)
 print("Ejercicio 4 - Contar las notas de 55 de la lista notas")
 #Para contar el numero de veces de un elemento de la lista se utiliza la funcion count
 print("La cantidad de notas con 55 es: ", notas.count(55))
+letras=["a","a", "s","g","u","l","g","a","r","45","p",45,12,2,7,True,False,True,True]
+print("La cantidad de veces encontrado es: ",letras.count("45"))
+
 
