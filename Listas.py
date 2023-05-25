@@ -28,19 +28,19 @@ print(nombres)
 #Agregar elementos a una lista
 #Agregar un elemento a la lista
 print("Ejercicio 6 - Agregar un elemento a la lista")
-#Para agregar un elemento a la lista se utiliza la funcion append
+#Para agregar un elemento a la lista se utiliza la función append
 nombres.append("Ruth Pereira")
 print(nombres)
 
 #Agregar varios elementos a la lista
-#Para agregar varios elementos a la lista se utiliza la funcion extend
+#Para agregar varios elementos a la lista se utiliza la función extend
 print("Ejercicio 7 - Agregar varios elementos a la lista")
 nombres.extend(["Juan Gonzales", "Maria Claros", "Jose Maria Prado"])
 print(nombres)
 
 #Insertar un elemento en posicion especifica de la lista
 print("Ejercicio 8 - Insertar un elemento en la posicion 0")
-#Para agregar un elemento en una posicion especifica de la lista se utiliza la funcio insert
+#Para agregar un elemento en una posición específica de la lista se utiliza la función insert
 nombres.insert(1,"Julio Paredes")
 nombres.insert(0,"Claudia Rocha")
 print(nombres)
@@ -48,20 +48,20 @@ print(nombres)
 #Eliminar elementos de una lista
 #Eliminar un elemento de la lista
 print("Ejercicio 9 -  Eliminar el nombre de Juan Gonzales")
-#Para eliminar un elemento de una lista se utiliza la funcion remove
+#Para eliminar un elemento de una lista se utiliza la función remove
 nombres.remove("Juan Gonzales")
 nombres.remove("Julio Paredes")
 print(nombres)
 
 #Eliminar el ultimo elemento de la lista
 print("Ejercicio 10 - Eliminar el ultimo elemento de la lista")
-#Para eliminar el ultimo elemento de cualquier lista se utiliza la funcion pop
+#Para eliminar el ultimo elemento de cualquier lista se utiliza la función pop
 nombres.pop()
 print(nombres)
 
-#Eliminar un elemento en una posicion especifica
+#Eliminar un elemento en una posición específica
 print("Ejercicio 11 - Eliminar un elemento en una posicion especifica")
-#Para eliminar un elemento en una posicion especifica se utiliza la funcion del
+#Para eliminar un elemento en una posición especifica se utiliza la función del
 del nombres[0]
 del nombres[6]
 del nombres[7]
@@ -69,6 +69,6 @@ print(nombres)
 
 #Funcion ordenar una lista
 print("Ejercicio 12 - Ordenar la lista nombres")
-#Para ordenar una lista en orden alfabetico se debera utilizar la funcion sort
+#Para ordenar una lista en orden alfabético se debera utilizar la función sort
 nombres.sort()
 print(nombres)
