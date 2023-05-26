@@ -46,6 +46,8 @@ print(min(a))
 print(max(b))
 #min: Nos devuelve el caracter menor de la cadena
 #max: Nos devuelve el caracter mayor de la cadena
+
+
 #Condicionales 
 print("Ejercicio 1 - cual es el mayor de los dos numeros ingresados por teclado")
 if num1>num2:
