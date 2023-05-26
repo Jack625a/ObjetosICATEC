@@ -38,3 +38,5 @@ elif num1==num2:
     print("error son iguales")
 else:
     print("el amyor es: ",num2)
+    
+    
