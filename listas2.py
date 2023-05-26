@@ -17,3 +17,6 @@ print("el promedio es: ",notaF)
 print("3 contar las notas de 55 de la lista")
 #para contar el numero de veces de la lista cont
 print("cantidad de notas 55 es: ",notas.count(55))
+
+letras=["a","a","a","a","l","g",1,True,False]
+print("la cantidad encontrada es",letras.count("g"))
