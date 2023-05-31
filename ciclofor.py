@@ -22,3 +22,12 @@ if promedio_Edades>=23:
 else:
     print("El promedio de edades de la materia Objetos I ",promedio_Edades, " es menor a 23")
     
+#Mostar un elemento especifico de las listas. (nombre - edad)
+print("La cantidad de estudiantes es: ", cantidad_Edades)
+id=int(input("Ingrese el id de estudiante que desea mostrar la informacion: "))
+print("El estudiante seleccionado es: ",nombres[id-1], " y su edad ", edades[id-1])
+
+def mostrar_Estudiante(id):
+    identificador=int(input("Ingrese el id del estudiante que desea mostrar la información: "))
+    print("El estudiante seleccionado es: ",nombres[identificador-1], " y su edad ", edades[identificador-1])
+
