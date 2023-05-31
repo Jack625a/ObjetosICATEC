@@ -19,15 +19,16 @@ tienda=Tienda("Tienda de barrio Doña Esperanza",451255656,"6 de octubre y boliv
 #Agregar productos de forma dinamica - se ingres por teclado
 #CREAR UN BUCLE REPETITIVO PARA AGREGAR MAS PRODUCTOS A LA TIENDA
 #poner 2 opciones- 1 Continuar Agregando 2 Salir
-print("Desea seguir agregando productos a la tienda")
-opciones=int(input("1. Continuar Agregando - 2. Salir"))
-if opciones==1:
-    producto1=input("Ingrese el nombre del producto: ")
-    precio1=float(input("Ingrese el precio del producto: "))
-    tienda.agregar_productos(producto1,precio1)
-else:
-    tienda.mostrar_productos()
-    break
+while True:
+    print("Desea seguir agregando productos a la tienda")
+    opciones=int(input("1. Continuar Agregando - 2. Salir"))
+    if opciones==1:
+        producto1=input("Ingrese el nombre del producto: ")
+        precio1=float(input("Ingrese el precio del producto: "))
+        tienda.agregar_productos(producto1,precio1)
+    else:
+        tienda.mostrar_productos()
+        break
 
 #Agregar los productos a la tienda 
 tienda.agregar_productos("Pan",0.50)
