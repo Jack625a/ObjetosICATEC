@@ -19,7 +19,13 @@ def validarMovil(movil):
     return cantidad==8
 
 print("FORMULARIO DE REGISTRO")
+#nombre=input("Ingrese su nombre: ")
+
 nombre=input("Ingrese su nombre: ")
+if nombre.isalpha():
+  print("el nombre es: ",nombre)
+else:
+  print("el nombre no debe estar vacio")
 
 while True:
     movil=int(input("Ingrese su movil: ")) 
