@@ -59,3 +59,4 @@ while True:
         print(f"El producto:'{productoEncontrado.nombre}' fue encontrado correctamente. Precio: {productoEncontrado.precio} Bs")
     else:
         print("El producto no esta disponible en la tienda")
+
