@@ -59,22 +59,49 @@ class CarritoCompras:
 
 
 # Crear instancias de productos
+
 producto1 = Producto("Produc1", 4550, "Como gama alta que es, el Galaxy S10 incorpora el último procesador Exynos, 8 GB de memoria RAM y una pantalla AMOLED Infinity-O con resolución 2K+, así como una triple cámara trasera.")
 producto2 = Producto("Produ2", 6500, "Como gama alta que es, el Galaxy S10 incorpora el último procesador Exynos, 8 GB de memoria RAM y una pantalla AMOLED Infinity-O con resolución 2K+, así como una triple cámara trasera.")
 producto3 = Producto("Produc3", 8550, "Como gama alta que es, el Galaxy S10 incorpora el último procesador Exynos, 8 GB de memoria RAM y una pantalla AMOLED Infinity-O con resolución 2K+, así como una triple cámara trasera.")
 
 # Creación del carrito de compras
 carrito = CarritoCompras()
-
+#carrito.agregar(producto1,15)
 # Agregar productos seleccionados al carrito de compras - de forma manual
-carrito.agregarProducto(producto1, 2)
-carrito.agregarProducto(producto3, 4)
+#Para mejorar el ejercicio con un bucle que permita agregar mas productos al carrito - Bucle While True:
+print("Productos Disponibles")
+print("Celulares")
+#Info=ProductoSeleccionadoCelulares(" ",0," ", " ",0, " ")
+#Info.Informacion()
+print("Computadoras")
+#Infor=ProductoSeleccionadoComputadoras(" ",0," ", " ",0, " ")
+#Infor.InforComputadora()
 
-# Mostrar el estado del carrito
+productoAgregar=input("Ingrese el producto al carrito: ")
+cantidadAgregar=int(input("Ingrese la cantidad que desea agregar: "))
+carrito.agregarProducto(producto1, cantidadAgregar)
+opcion=input("Desea seguir agregando productos al carrito Si para continuar, No para Salir")
+if opcion=="Si":
+   
+    productoAgregar=input("Ingrese el producto al carrito: ")
+    cantidadAgregar=int(input("Ingrese la cantidad que desea agregar: "))
+    carrito.agregarProducto(producto3, cantidadAgregar)
+else: 
+        # Mostrar el estado del carrito
+    carrito.estadoCarrito()
+        # Mostrar el total a pagar
+    total = carrito.compraTotal()
+    print(f"El total que debe cancelar es: {total}Bs")
+        #break
+
+   # Mostrar el estado del carrito
 carrito.estadoCarrito()
-
-# Mostrar el total a pagar
+        # Mostrar el total a pagar
 total = carrito.compraTotal()
 print(f"El total que debe cancelar es: {total}Bs")
+
+
+
+
 
 
