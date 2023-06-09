@@ -44,11 +44,22 @@ cajero3=CajeroAutomatico()
 #Paso 3. Agregar las instancias a los objetos
 #Agregar usuarios a la base de datos del Cajero => Diccionario
 #CASO 1 - AGREGAR USUARIOS DE FORMA MANUAL
-cajero1.agregarCuenta("123456789",5000,"Kevin Arroyo")
-cajero1.agregarCuenta("789456123",6000,"Romer Nina")
-cajero1.agregarCuenta("741852963",6500,"Ramiro Ayaviri")
-cajero1.agregarCuenta("258963147",9500,"Nayeli Vargas")
-cajero1.agregarCuenta("123987456",8800,"Yeltsin Ancachi")
+#cajero1.agregarCuenta("123456789",5000,"Kevin Arroyo")
+#cajero1.agregarCuenta("789456123",6000,"Romer Nina")
+#cajero1.agregarCuenta("741852963",6500,"Ramiro Ayaviri")
+#cajero1.agregarCuenta("258963147",9500,"Nayeli Vargas")
+#cajero1.agregarCuenta("123987456",8800,"Yeltsin Ancachi")
+
+#CASO 2 . AGREGAR USUARIOS DE FORMA AUTOMATICA
+while True:
+    print("Agregar cuentas al cajero")
+    numero_cuenta=input("Ingrese el numero de cuenta del ususario: ")
+    saldo=int(input("Ingrese el saldo de la cuenta: "))
+    usuario=input("Ingrese el nombre del usuario: ")
+    cajero1.agregarCuenta(numero_cuenta,saldo,usuario)
+    continuarAgregando=input("Desea seguir agregando usuarioa al Cajero? Si para continuar, No para Salir:> ")
+    if continuarAgregando=='No':
+        break
 
 #Paso 4. Creacion de la instancia Principal
 while True:
@@ -85,9 +96,3 @@ while True:
         break
 
 
-
-
-
-
-
-#CASO 2 . AGREGAR USUARIOS DE FORMA AUTOMATICA
