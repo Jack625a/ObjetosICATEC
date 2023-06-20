@@ -3,6 +3,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image
+from tkinter import messagebox
 #Envio:
 #1. Auto=15
 #2. Moto=10
@@ -19,6 +20,18 @@ class Aplicacion():
         self.envio=StringVar(value="")
         self.cantidad=IntVar(value=1)
 
+        #lISTA DE PRODUCTOS
+        self.productos=[
+            {"nombre":"Producto1","precio":25,"imagen":"7.png"},
+            {"nombre":"Producto2","precio":35,"imagen":"2.jpg"},
+            {"nombre":"Producto3","precio":55,"imagen":"3.jpg"},
+            {"nombre":"Producto4","precio":15,"imagen":"4.jpg"},
+            {"nombre":"Producto5","precio":82,"imagen":"5.jpg"},
+            {"nombre":"Producto6","precio":250,"imagen":"6.jpg"}
+
+        ]
+        self.productos_seleccion=self.productos[0]
+
         #Definir la imagen del producto:
         self.imagen=Image.open("1.png")
         self.imagen=self.imagen.resize((200,200))
@@ -27,7 +40,10 @@ class Aplicacion():
     
         #Declarion de los objetos de la ventana
         self.imagen1=Label(self.ventana,image=self.imagen)
-        self.producto=Label(self.ventana,text="Producto 1")
+        self.ProductosTienda=ttk.Combobox(self.ventana, values=[producto["nombre"]
+            for producto in self.productos
+        ], state="readonly")
+        #self.producto=Label(self.ventana,text="Producto 1")
         self.textoCantidad=Label(self.ventana,text="Cantidad")
         self.cantidadSeleccion=Spinbox(self.ventana, from_=1, to=30, wrap=True, textvariable=self.cantidad, state='readonly')
         self.TextEnvio=Label(self.ventana,text="Tipo de Envio")
@@ -42,7 +58,7 @@ class Aplicacion():
 
         #Definir la posiciones de los componentes
         self.imagen1.pack()
-        self.producto.pack()
+        self.ProductosTienda.pack()
         self.textoCantidad.pack()
         self.cantidadSeleccion.pack()
         self.TextEnvio.pack()
