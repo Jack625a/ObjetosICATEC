@@ -126,4 +126,3 @@ class Aplicacion():
 #Crear el objeto de la clase
 app=Aplicacion()
 app.ventana.mainloop()
-
