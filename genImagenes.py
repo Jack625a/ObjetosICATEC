@@ -1,5 +1,5 @@
 import openai
-openai.api_key="APIKEY"
+openai.api_key="API_KEY"
 mensaje=input("Ingrese el mensaje para la generación de la imagen: ")
 respuesta=openai.Image.create(
     prompt=mensaje,
