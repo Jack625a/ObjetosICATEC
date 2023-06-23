@@ -1,5 +1,5 @@
 #Paso 1 - Obtener la Api Key de Openai => https://platform.openai.com/account/api-keys
-#ApiKey: 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
+#ApiKey: 
 #Paso 2 - Instalar las librerias
 #pip install openai - pip install pillow - pip install customtkinter
 #Paso3 - Importar todas las librerias que se usara
@@ -10,41 +10,41 @@ from PIL import Image, ImageTk
 import os
 import requests, io
 #Paso 4 - Crear la funcion para la generacion de las Imagenes
-
 def generacion():
     openai.api_key=("") #API KEY OBTENIDO
-    user_prompt=prompt_entry.get("0.0",tkinter.END)
+    user_prompt = entrada_prompt.get("0.0", tkinter.END)
+    user_prompt += "in style: " + estilos_selector.get()
     #Realizar la creacion de la imagen en base al prompt enviado
-    respuesta=openai.Image.create(
+    response=openai.Image.create(
         prompt=user_prompt,
-        n=int(number_slider.get()),
+        n=int(slider_cantidad.get()),
         size="512x512"
     )
     #Almacenar el resultado de las imagenes generadas en una lista vacia
     Imagen_url=[]
-    for i in range(len(respuesta['data'])):
-        Imagen_url.append(respuesta['data'][i]['url'])
+    for i in range(len(response['data'])):
+        Imagen_url.append(response['data'][i]['url'])
     print(Imagen_url)
     #Recorrido de las url creadas y pasar al ingreso de las imagenes a la lista Imagenes 
+       
     imagenes=[]
     for url in Imagen_url:
-        respuesta=requests.get(url)
-        image=Image.open(io.BytesIO(respuesta.content))
+        response = requests.get(url)
+        image=Image.open(io.BytesIO(response.content))
         imagenGenerada=ImageTk.PhotoImage(image)
         imagenes.append(imagenGenerada)
 
 #Funcion para el ingreso de las imagenes al LIENZO
-def ingreso_imagen(index=0):
-    canvas.image=imagenes[index]
-    canvas.create_image(0,0,anchor="nw",image=imagenes[index])
-    index=(index+1)% len(imagenes)
-    canvas.after(3000,ingreso_imagen,index)
+    def ingreso_imagen(index=0):
+        canvas.image = imagenes[index]
+        canvas.create_image(0, 0, anchor="nw", image=imagenes[index])
+        index = (index + 1) % len(imagenes) 
+        canvas.after(3000, ingreso_imagen, index)
 
-#Llamar a la funcion para la creacion del lienzo
-ingreso_imagen()
+    ingreso_imagen()
 
 #Paso 5.Crear la pantalla con los componentes:
-ventana=ctk.CTK()
+ventana=ctk.CTk()
 ventana.title("GENERACION DE IMAGENES - CATEC")
 ctk.set_appearance_mode("dark")
 pantalla=ctk.CTkFrame(ventana)
@@ -61,15 +61,14 @@ estilos_selector.grid(row=1,column=1,padx=10,pady=10)
 
 cantidad_label=ctk.CTkLabel(pantalla, text="Cantidad de Imagenes")
 cantidad_label.grid(row=2,column=0)
-slider_cantidad=ctK.CTkSlider(pantalla,from_=1, to=5)
+slider_cantidad=ctk.CTkSlider(pantalla, from_=1, to=10, number_of_steps=9)
 slider_cantidad.grid(row=2,column=1)
 
 #Boton para la generacion
 boton=ctk.CTkButton(pantalla,text="Generar Imagen", command=generacion)
-boton.grid(row=3,column=0,padx=10,pady=10)
+boton.grid(row=3, column=0, columnspan=2, sticky="news", padx=10, pady=10)
 
 canvas=tkinter.Canvas(ventana,width=512,height=512)
 canvas.pack(side="left")
 
 ventana.mainloop()
-
