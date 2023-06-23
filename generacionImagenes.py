@@ -1,5 +1,5 @@
 #Paso 1 - Obtener la Api Key de Openai => https://platform.openai.com/account/api-keys
-#ApiKey: 
+#ApiKey: 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
 #Paso 2 - Instalar las librerias
 #pip install openai - pip install pillow - pip install customtkinter
 #Paso3 - Importar todas las librerias que se usara
@@ -11,7 +11,7 @@ import os
 import requests, io
 #Paso 4 - Crear la funcion para la generacion de las Imagenes
 def generacion():
-    openai.api_key=("") #API KEY OBTENIDO
+    openai.api_key=("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") #API KEY OBTENIDO
     user_prompt = entrada_prompt.get("0.0", tkinter.END)
     user_prompt += "in style: " + estilos_selector.get()
     #Realizar la creacion de la imagen en base al prompt enviado
