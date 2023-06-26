@@ -1,10 +1,10 @@
-#Importar las librerias 
+#Importar las libreriass 
 import customtkinter as ctk 
 import tkinter
 import openai
 from PIL import Image, ImageTk
 
-openai.api_key="API KEY" #REEMPLAZAR POR SU API KEY
+openai.api_key="API KEY" #REEMPLAZAR POR SU API KEY a
 def obtener_respuesta(pregunta):
     respuesta=openai.Completion.create(
         engine="text-davinci-003",
