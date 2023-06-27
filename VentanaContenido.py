@@ -23,7 +23,7 @@ def generar_respuesta():
     respuesta_text.delete("0.0",tkinter.END)
     respuesta_text.insert('end',respuesta)
     #respuesta_label.configure(text=respuesta)
-    print(respuesta)
+    #print(respuesta)
 
 ventana=ctk.CTk()
 ventana.title("Aprende a Programar - CATEC")
