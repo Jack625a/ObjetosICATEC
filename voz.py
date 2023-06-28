@@ -9,7 +9,7 @@ import pyttsx3
 import speech_recognition as sr
 from PIL import Image, ImageTk
 
-openai.api_key="API_KEY"
+openai.api_key=""
 
 #fUNCION PARA OBTENER UNA RESPUSTA EN BASE A LA CONECCION CON LA RED NEURONAL DEL MODELO DAVINCI 003
 def obtener_respuesta(pregunta):
@@ -45,7 +45,7 @@ def generar_respuesta():
     convertirVoz(respuesta)
 
 #Funcion para convertir el texto en voz
-def convertir(texto):
+def convertirVoz(texto):
     engine=pyttsx3.init()
     engine.setProperty("rate",150)
     engine.say(texto)
