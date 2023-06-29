@@ -106,34 +106,34 @@ def opcion1():
         ingreso_imagen()
 
     #Paso 5.Crear la pantalla con los componentes:
-    ventana=ctk.CTk()
-    ventana.title("GENERACION DE IMAGENES - CATEC")
+    ventana1=ctk.CTk()
+    ventana1.title("GENERACION DE IMAGENES - CATEC")
     ctk.set_appearance_mode("dark")
-    pantalla=ctk.CTkFrame(ventana)
-    pantalla.pack(side="left",padx=20,pady=20)
-    prompt_label=ctk.CTkLabel(pantalla, text="Prompt")
+    pantalla1=ctk.CTkFrame(ventana1)
+    pantalla1.pack(side="left",padx=20,pady=20)
+    prompt_label=ctk.CTkLabel(pantalla1, text="Prompt")
     prompt_label.grid(row=0,column=0, padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla,height=10)
+    entrada_prompt=ctk.CTkTextbox(pantalla1,height=10)
     entrada_prompt.grid(row=0,column=1,padx=10,pady=10)
 
-    estilo_label=ctk.CTkLabel(pantalla, text="Estilo de la Imagen")
+    estilo_label=ctk.CTkLabel(pantalla1, text="Estilo de la Imagen")
     estilo_label.grid(row=1,column=0,padx=10,pady=10)
-    estilos_selector=ctk.CTkComboBox(pantalla,values=["Realistic","Cartoon","3D Ilustration","Flat Art"])
+    estilos_selector=ctk.CTkComboBox(pantalla1,values=["Realistic","Cartoon","3D Ilustration","Flat Art"])
     estilos_selector.grid(row=1,column=1,padx=10,pady=10)
 
-    cantidad_label=ctk.CTkLabel(pantalla, text="Cantidad de Imagenes")
+    cantidad_label=ctk.CTkLabel(pantalla1, text="Cantidad de Imagenes")
     cantidad_label.grid(row=2,column=0)
-    slider_cantidad=ctk.CTkSlider(pantalla, from_=1, to=10, number_of_steps=9)
+    slider_cantidad=ctk.CTkSlider(pantalla1, from_=1, to=10, number_of_steps=9)
     slider_cantidad.grid(row=2,column=1)
 
     #Boton para la generacion
-    boton=ctk.CTkButton(pantalla,text="Generar Imagen", command=generacion)
+    boton=ctk.CTkButton(pantalla1,text="Generar Imagen", command=generacion)
     boton.grid(row=3, column=0, columnspan=2, sticky="news", padx=10, pady=10)
 
-    canvas=tkinter.Canvas(ventana,width=512,height=512)
+    canvas=tkinter.Canvas(ventana1,width=512,height=512)
     canvas.pack(side="left")
 
-    ventana.mainloop()
+    ventana1.mainloop()
 #Opcion 2 del menu
 def opcion2():
     def obtener_respuesta(pregunta):
@@ -156,37 +156,37 @@ def opcion2():
         #respuesta_label.configure(text=respuesta)
         #print(respuesta)
 
-    ventana=ctk.CTk()
-    ventana.title("Aprende a Programar - CATEC")
+    ventana2=ctk.CTk()
+    ventana2.title("Aprende a Programar - CATEC")
     ctk.set_appearance_mode("dark")
-    pantalla=ctk.CTkFrame(ventana)
-    pantalla.pack(side="left",padx=20,pady=20)
+    pantalla2=ctk.CTkFrame(ventana2)
+    pantalla2.pack(side="left",padx=20,pady=20)
 
     #Selector de lista de opciones para la mejora de la respuesta (Lista en base a su tema)
     opciones=["Php","Python","Css","C","C++","Java","Kotlin"] #grupo 1
     opciones2=["Alimentacion Saludable","Alimentacion para bajar de peso","Alimentacion para enfermedades","Alimentacion para Niños","Alimentacion para Adultos Mayores"]#GRUPO 2
-    lista_opciones=ttk.Combobox(pantalla,values=opciones2)
+    lista_opciones=ttk.Combobox(pantalla2,values=opciones2)
     lista_opciones.grid(row=0,column=1, padx=10,pady=10)
 
-    titulo=ctk.CTkLabel(pantalla,text="Seleccione un Lenguaje de Programación que desea aprender")#GRUPO 1
-    titulo2=ctk.CTkLabel(pantalla,text="Seleecione el tipo de alimentacion que desea consultar")#GRUPO 2
+    titulo=ctk.CTkLabel(pantalla2,text="Seleccione un Lenguaje de Programación que desea aprender")#GRUPO 1
+    titulo2=ctk.CTkLabel(pantalla2,text="Seleecione el tipo de alimentacion que desea consultar")#GRUPO 2
     titulo2.grid(row=0,column=0,padx=10,pady=10)
-    prompt_label=ctk.CTkLabel(pantalla,text="Ingrese su pregunta.")
+    prompt_label=ctk.CTkLabel(pantalla2,text="Ingrese su pregunta.")
     prompt_label.grid(row=1,column=0,padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla,height=10)
+    entrada_prompt=ctk.CTkTextbox(pantalla2,height=10)
     entrada_prompt.grid(row=1,column=1,padx=10,pady=10)
 
     #Boton para el envio del prompt al servicio del modelo
-    boton=ctk.CTkButton(pantalla,text="Realizar Pregunta", command=generar_respuesta )
+    boton=ctk.CTkButton(pantalla2,text="Realizar Pregunta", command=generar_respuesta )
     boton.grid(row=2,column=1,padx=10,pady=10)
 
     #MOSTRAR EN PANTALLA LA RESPUESTA OBTENIDA POR EL MODELO
-    respuesta_label=ctk.CTkLabel(pantalla,text="Respuesta")
+    respuesta_label=ctk.CTkLabel(pantalla2,text="Respuesta")
     respuesta_label.grid(row=3,column=0,padx=10,pady=10)
-    respuesta_text=ctk.CTkTextbox(pantalla,height=200,width=250)
+    respuesta_text=ctk.CTkTextbox(pantalla2,height=200,width=250)
     respuesta_text.grid(row=3,column=1,padx=10,pady=10)
 
-    canvas=tkinter.Canvas(ventana,width=512, height=512)
+    canvas=tkinter.Canvas(ventana2,width=512, height=512)
     canvas.pack(side="left")
 
     #Insercion de la imagen
@@ -196,7 +196,7 @@ def opcion2():
     imagen_label=tkinter.Label(canvas,image=imagen_mostrada)
     imagen_label.pack()
 
-    ventana.mainloop()
+    ventana2.mainloop()
 
 #Opcion 3 del menu
 def opcion3():
@@ -240,32 +240,32 @@ def opcion3():
         engine.runAndWait()
 
     #CREACION DE LAS VENTANA
-    ventana=ctk.CTk()
-    ventana.title("Aprende a Programar - CATEC")
+    ventana3=ctk.CTk()
+    ventana3.title("Aprende a Programar - CATEC")
     ctk.set_appearance_mode("dark")
-    pantalla=ctk.CTkFrame(ventana)
-    pantalla.pack(side="left",padx=20,pady=20)
+    pantalla3=ctk.CTkFrame(ventana3)
+    pantalla3.pack(side="left",padx=20,pady=20)
 
-    prompt_label=ctk.CTkLabel(pantalla,text="Ingrese su pregunta.")
+    prompt_label=ctk.CTkLabel(pantalla3,text="Ingrese su pregunta.")
     prompt_label.grid(row=0,column=0,padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla,height=10)
+    entrada_prompt=ctk.CTkTextbox(pantalla3,height=10)
     entrada_prompt.grid(row=0,column=1,padx=10,pady=10)
 
     #Boton para el envio del prompt al servicio del modelo
-    boton=ctk.CTkButton(pantalla,text="Realizar Pregunta", command=generar_respuesta )
+    boton=ctk.CTkButton(pantalla3,text="Realizar Pregunta", command=generar_respuesta )
     boton.grid(row=1,column=0,padx=10,pady=10)
 
     #Bton para obtner la respuesta con voZ
-    boton_voz=ctk.CTkButton(pantalla,text="Pregunta por Voz",command=reconociminetovVoz)
+    boton_voz=ctk.CTkButton(pantalla3,text="Pregunta por Voz",command=reconociminetovVoz)
     boton_voz.grid(row=1,column=1,padx=10,pady=10)
 
     #MOSTRAR EN PANTALLA LA RESPUESTA OBTENIDA POR EL MODELO
-    respuesta_label=ctk.CTkLabel(pantalla,text="Respuesta")
+    respuesta_label=ctk.CTkLabel(pantalla3,text="Respuesta")
     respuesta_label.grid(row=2,column=0,padx=10,pady=10)
-    respuesta_text=ctk.CTkTextbox(pantalla,height=200)
+    respuesta_text=ctk.CTkTextbox(pantalla3,height=200)
     respuesta_text.grid(row=2,column=1,padx=10,pady=10)
 
-    canvas=tkinter.Canvas(ventana,width=512, height=512)
+    canvas=tkinter.Canvas(ventana3,width=512, height=512)
     canvas.pack(side="left")
 
     #Insercion de la imagen
@@ -275,7 +275,7 @@ def opcion3():
     imagen_label=tkinter.Label(canvas,image=imagen_mostrada)
     imagen_label.pack()
 
-    ventana.mainloop()
+    ventana3.mainloop()
 
 ventana=ctk.CTk()
 ventana.title("Pantalla Principal")
