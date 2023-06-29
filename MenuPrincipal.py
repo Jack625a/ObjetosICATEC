@@ -6,6 +6,8 @@ import openai
 from tkinter import ttk
 import pyttsx3
 import speech_recognition as sr
+import os
+import requests, io
 
 def abrir_opciones(opcion_nombre):
     #para limpiar el contenido de la ventan principal con respecto a sus opciones
@@ -54,18 +56,18 @@ def cargar_contenidoMenu():
     #Boton Opcion 1
     imagen_opcion1=Image.open("opcion1.png")
     imagen_opcion1=imagen_opcion1.resize((150,70))
-    btn_imagenOpcion1=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion1), command=opcion1, font=("Verdana",18), text="Generación de Imagenes con IA")
+    btn_imagenOpcion1=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion1), command=lambda:abrir_opciones("Opcion1"), font=("Verdana",18), text="Generación de Imagenes con IA")
     btn_imagenOpcion1.place(x=150,y=200)
     #Boton Opcion 2
     imagen_opcion2=Image.open("opcion2.jpg")
     imagen_opcion2=imagen_opcion2.resize((150,70))
-    btn_imagenOpcion2=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion2), command=opcion2, font=("Verdana",18), text="Aprende a Programar")
+    btn_imagenOpcion2=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion2), command=lambda:abrir_opciones("Opcion2"), font=("Verdana",18), text="Aprende a Programar")
     btn_imagenOpcion2.place(x=150,y=300)
 
     #Boton Opcion 3
     imagen_opcion3=Image.open("opcion3.jpg")
     imagen_opcion3=imagen_opcion3.resize((150,70))
-    btn_imagenOpcion3=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion3), command=opcion3, font=("Verdana",18), text="Realiza una Pregunta por Voz")
+    btn_imagenOpcion3=ctk.CTkButton(pantalla,image=ImageTk.PhotoImage(imagen_opcion3), command=lambda:abrir_opciones("Opcion3"), font=("Verdana",18), text="Realiza una Pregunta por Voz")
     btn_imagenOpcion3.place(x=150,y=400)
 
 #Opcion 1  del menu
