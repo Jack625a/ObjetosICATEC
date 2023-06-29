@@ -15,7 +15,7 @@ def abrir_opciones(opcion_nombre):
         pantallas.destroy()
 
     barra_opciones=ctk.CTkFrame(pantalla)
-    barra_opciones.pack(side="top",fill=tkinter.x)
+    barra_opciones.pack(side="top",fill=ctk.X)
 
     #Botones para regresar al menu principal
     boton_volver=ctk.CTkButton(barra_opciones,text="Menu Principal", command=menuPrincipal)
@@ -288,4 +288,5 @@ pantalla=ctk.CTkFrame(ventana)
 pantalla.pack(fill=tkinter.BOTH, expand=True)
 
 
+cargar_contenidoMenu()
 ventana.mainloop()
