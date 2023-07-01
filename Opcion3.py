@@ -67,6 +67,9 @@ slider_cantidad.grid(row=2,column=1)
 #Boton para la generacion
 boton=ctk.CTkButton(pantalla,text="Generar Imagen", command=generacion)
 boton.grid(row=3, column=0, columnspan=2, sticky="news", padx=10, pady=10)
+#boton para volver al menu
+boton_menu=ctk.CTkButton(pantalla,text="Menu Principal",command=ventana.quit)
+boton_menu.grid(row=4,column=0,columnspan=2, sticky="news", padx=10, pady=10)
 
 canvas=tkinter.Canvas(ventana,width=512,height=512)
 canvas.pack(side="left")

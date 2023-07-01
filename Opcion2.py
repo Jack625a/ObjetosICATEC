@@ -58,6 +58,9 @@ respuesta_label=ctk.CTkLabel(pantalla,text="Respuesta")
 respuesta_label.grid(row=3,column=0,padx=10,pady=10)
 respuesta_text=ctk.CTkTextbox(pantalla,height=200,width=250)
 respuesta_text.grid(row=3,column=1,padx=10,pady=10)
+#boton para volver al menu
+boton_menu=ctk.CTkButton(pantalla,text="Menu Principal",command=ventana.quit)
+boton_menu.grid(row=4,column=0,columnspan=2, sticky="news", padx=10, pady=10)
 
 canvas=tkinter.Canvas(ventana,width=512, height=512)
 canvas.pack(side="left")
@@ -70,5 +73,7 @@ imagen_label=tkinter.Label(canvas,image=imagen_mostrada)
 imagen_label.pack()
 
 ventana.mainloop()
+
+
 
 

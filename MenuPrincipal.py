@@ -2,25 +2,41 @@
 import customtkinter as ctk
 import tkinter
 from PIL import Image, ImageTk
-import openai
-from tkinter import ttk
-import pyttsx3
-import speech_recognition as sr
-import os
-import requests, io
+import subprocess
+
+
+def abrir_archivo(archivo):
+    subprocess.Popen(["python", archivo])
+
+ventana=ctk.CTk()
+ventana.title("Pantalla Principal")
+ventana.geometry("800x512")
+ventana.resizable(False,False)
+ctk.set_appearance_mode("dark")
+
+#Pantalla de las opciones
+pantalla=ctk.CTkFrame(ventana)
+pantalla.pack(fill=tkinter.BOTH, expand=True)
+
+# Crear el menú
+menubar = tkinter.Menu(ventana)
+
+# Crear el menú "Archivo"
+menu_archivo = tkinter.Menu(menubar, tearoff=0)
+menu_archivo.add_command(label="Modelo de Red Neuronal por Voz", command=lambda: abrir_archivo("Opcion1.py"))
+menu_archivo.add_command(label="Aprende a Programar con Inteligencia Artificial", command=lambda: abrir_archivo("Opcion2.py"))
+menu_archivo.add_command(label="Generación de Imágenes con Inteligencia Artificial", command=lambda: abrir_archivo("Opcion3.py"))
+menu_archivo.add_separator()
+menu_archivo.add_command(label="Salir", command=ventana.quit)
+
+menubar.add_cascade(label="Archivo", menu=menu_archivo)
+
+# Configurar el menú en la ventana principal
+ventana.config(menu=menubar)
+
+
 
 def abrir_opciones(opcion_nombre):
-    #para limpiar el contenido de la ventan principal con respecto a sus opciones
-    for pantallas in pantalla.winfo_children():
-        pantallas.destroy()
-
-    barra_opciones=ctk.CTkFrame(pantalla)
-    barra_opciones.pack(side="top",fill=ctk.X)
-
-    #Botones para regresar al menu principal
-    boton_volver=ctk.CTkButton(barra_opciones,text="Menu Principal", command=menuPrincipal)
-    boton_volver.pack(side="left",padx=10,pady=10)
-
     #CREAR UNA CONDICIONAL EN BASE A LA SELECCION
     if opcion_nombre=="Opcion1":
         opcion1()
@@ -72,221 +88,15 @@ def cargar_contenidoMenu():
 
 #Opcion 1  del menu
 def opcion1():
-    def generacion():
-        openai.api_key=("") #API KEY OBTENIDO
-        user_prompt = entrada_prompt.get("0.0", tkinter.END)
-        user_prompt += "in style: " + estilos_selector.get()
-        #Realizar la creacion de la imagen en base al prompt enviado
-        response=openai.Image.create(
-            prompt=user_prompt,
-            n=int(slider_cantidad.get()),
-            size="512x512"
-        )
-        #Almacenar el resultado de las imagenes generadas en una lista vacia
-        Imagen_url=[]
-        for i in range(len(response['data'])):
-            Imagen_url.append(response['data'][i]['url'])
-        print(Imagen_url)
-        #Recorrido de las url creadas y pasar al ingreso de las imagenes a la lista Imagenes 
-        
-        imagenes=[]
-        for url in Imagen_url:
-            response = requests.get(url)
-            image=Image.open(io.BytesIO(response.content))
-            imagenGenerada=ImageTk.PhotoImage(image)
-            imagenes.append(imagenGenerada)
-
-    #Funcion para el ingreso de las imagenes al LIENZO
-        def ingreso_imagen(index=0):
-            canvas.image = imagenes[index]
-            canvas.create_image(0, 0, anchor="nw", image=imagenes[index])
-            index = (index + 1) % len(imagenes) 
-            canvas.after(3000, ingreso_imagen, index)
-
-        ingreso_imagen()
-
-    #Paso 5.Crear la pantalla con los componentes:
-    ventana1=ctk.CTk()
-    ventana1.title("GENERACION DE IMAGENES - CATEC")
-    ctk.set_appearance_mode("dark")
-    pantalla1=ctk.CTkFrame(ventana1)
-    pantalla1.pack(side="left",padx=20,pady=20)
-    prompt_label=ctk.CTkLabel(pantalla1, text="Prompt")
-    prompt_label.grid(row=0,column=0, padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla1,height=10)
-    entrada_prompt.grid(row=0,column=1,padx=10,pady=10)
-
-    estilo_label=ctk.CTkLabel(pantalla1, text="Estilo de la Imagen")
-    estilo_label.grid(row=1,column=0,padx=10,pady=10)
-    estilos_selector=ctk.CTkComboBox(pantalla1,values=["Realistic","Cartoon","3D Ilustration","Flat Art"])
-    estilos_selector.grid(row=1,column=1,padx=10,pady=10)
-
-    cantidad_label=ctk.CTkLabel(pantalla1, text="Cantidad de Imagenes")
-    cantidad_label.grid(row=2,column=0)
-    slider_cantidad=ctk.CTkSlider(pantalla1, from_=1, to=10, number_of_steps=9)
-    slider_cantidad.grid(row=2,column=1)
-
-    #Boton para la generacion
-    boton=ctk.CTkButton(pantalla1,text="Generar Imagen", command=generacion)
-    boton.grid(row=3, column=0, columnspan=2, sticky="news", padx=10, pady=10)
-
-    canvas=tkinter.Canvas(ventana1,width=512,height=512)
-    canvas.pack(side="left")
-
-    ventana1.mainloop()
+    subprocess.Popen(["python", "Opcion1.py"])
 #Opcion 2 del menu
 def opcion2():
-    def obtener_respuesta(pregunta):
-        respuesta=openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=pregunta,
-            temperature=0.6,
-            max_tokens=200,
-        )
-        return respuesta.choices[0].text.strip()
-
-    def generar_respuesta():
-        seleccion=lista_opciones.get()
-        prompt=f"Convertirse en experto en {seleccion} y realizar una explicación detallada de la pregunta."
-        pregunta=entrada_prompt.get("0.0",tkinter.END)
-        pregunta=f"{prompt} {pregunta}"
-        respuesta=obtener_respuesta(pregunta)
-        respuesta_text.delete("0.0",tkinter.END)
-        respuesta_text.insert('end',respuesta)
-        #respuesta_label.configure(text=respuesta)
-        #print(respuesta)
-
-    ventana2=ctk.CTk()
-    ventana2.title("Aprende a Programar - CATEC")
-    ctk.set_appearance_mode("dark")
-    pantalla2=ctk.CTkFrame(ventana2)
-    pantalla2.pack(side="left",padx=20,pady=20)
-
-    #Selector de lista de opciones para la mejora de la respuesta (Lista en base a su tema)
-    opciones=["Php","Python","Css","C","C++","Java","Kotlin"] #grupo 1
-    opciones2=["Alimentacion Saludable","Alimentacion para bajar de peso","Alimentacion para enfermedades","Alimentacion para Niños","Alimentacion para Adultos Mayores"]#GRUPO 2
-    lista_opciones=ttk.Combobox(pantalla2,values=opciones2)
-    lista_opciones.grid(row=0,column=1, padx=10,pady=10)
-
-    titulo=ctk.CTkLabel(pantalla2,text="Seleccione un Lenguaje de Programación que desea aprender")#GRUPO 1
-    titulo2=ctk.CTkLabel(pantalla2,text="Seleecione el tipo de alimentacion que desea consultar")#GRUPO 2
-    titulo2.grid(row=0,column=0,padx=10,pady=10)
-    prompt_label=ctk.CTkLabel(pantalla2,text="Ingrese su pregunta.")
-    prompt_label.grid(row=1,column=0,padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla2,height=10)
-    entrada_prompt.grid(row=1,column=1,padx=10,pady=10)
-
-    #Boton para el envio del prompt al servicio del modelo
-    boton=ctk.CTkButton(pantalla2,text="Realizar Pregunta", command=generar_respuesta )
-    boton.grid(row=2,column=1,padx=10,pady=10)
-
-    #MOSTRAR EN PANTALLA LA RESPUESTA OBTENIDA POR EL MODELO
-    respuesta_label=ctk.CTkLabel(pantalla2,text="Respuesta")
-    respuesta_label.grid(row=3,column=0,padx=10,pady=10)
-    respuesta_text=ctk.CTkTextbox(pantalla2,height=200,width=250)
-    respuesta_text.grid(row=3,column=1,padx=10,pady=10)
-
-    canvas=tkinter.Canvas(ventana2,width=512, height=512)
-    canvas.pack(side="left")
-
-    #Insercion de la imagen
-    imagen=Image.open("aprender.jpg")
-    imagen=imagen.resize((512,512))
-    imagen_mostrada=ImageTk.PhotoImage(imagen)
-    imagen_label=tkinter.Label(canvas,image=imagen_mostrada)
-    imagen_label.pack()
-
-    ventana2.mainloop()
+    subprocess.Popen(["python", "Opcion2.py"])
 
 #Opcion 3 del menu
+
 def opcion3():
-    def obtener_respuesta(pregunta):
-        respuesta=openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=pregunta,
-            temperature=0.5,
-            max_tokens=200,
-        )
-        return respuesta.choices[0].text.strip()
-
-    #FUNCION PARA ACTIVAR EL RECONOCIMIENTO DE VOZ
-    def reconociminetovVoz():
-        r=sr.Recognizer()
-        with sr.Microphone(device_index=2) as source:
-            print("Cual su pregunta?")
-            audio=r.listen(source)
-        try:
-            pregunta=r.recognize_google(audio,language="es-ES")
-            entrada_prompt.delete("0.0",tkinter.END)
-            entrada_prompt.insert(tkinter.END,pregunta)
-            generar_respuesta()
-        except sr.UnknownValueError as e:
-            print("Error no se reconocio el audio")
-        except sr.RequestError as re:
-            print("Error comprube su conexion a internet")
-
-    def generar_respuesta():
-        pregunta=entrada_prompt.get("0.0",tkinter.END)
-        respuesta=obtener_respuesta(pregunta)
-        respuesta_text.delete("0.0",tkinter.END)
-        respuesta_text.insert('end',respuesta)
-        convertirVoz(respuesta)
-
-    #Funcion para convertir el texto en voz
-    def convertirVoz(texto):
-        engine=pyttsx3.init()
-        engine.setProperty("rate",150)
-        engine.say(texto)
-        engine.runAndWait()
-
-    #CREACION DE LAS VENTANA
-    ventana3=ctk.CTk()
-    ventana3.title("Aprende a Programar - CATEC")
-    ctk.set_appearance_mode("dark")
-    pantalla3=ctk.CTkFrame(ventana3)
-    pantalla3.pack(side="left",padx=20,pady=20)
-
-    prompt_label=ctk.CTkLabel(pantalla3,text="Ingrese su pregunta.")
-    prompt_label.grid(row=0,column=0,padx=10,pady=10)
-    entrada_prompt=ctk.CTkTextbox(pantalla3,height=10)
-    entrada_prompt.grid(row=0,column=1,padx=10,pady=10)
-
-    #Boton para el envio del prompt al servicio del modelo
-    boton=ctk.CTkButton(pantalla3,text="Realizar Pregunta", command=generar_respuesta )
-    boton.grid(row=1,column=0,padx=10,pady=10)
-
-    #Bton para obtner la respuesta con voZ
-    boton_voz=ctk.CTkButton(pantalla3,text="Pregunta por Voz",command=reconociminetovVoz)
-    boton_voz.grid(row=1,column=1,padx=10,pady=10)
-
-    #MOSTRAR EN PANTALLA LA RESPUESTA OBTENIDA POR EL MODELO
-    respuesta_label=ctk.CTkLabel(pantalla3,text="Respuesta")
-    respuesta_label.grid(row=2,column=0,padx=10,pady=10)
-    respuesta_text=ctk.CTkTextbox(pantalla3,height=200)
-    respuesta_text.grid(row=2,column=1,padx=10,pady=10)
-
-    canvas=tkinter.Canvas(ventana3,width=512, height=512)
-    canvas.pack(side="left")
-
-    #Insercion de la imagen
-    imagen=Image.open("aprender.jpg")
-    imagen=imagen.resize((512,512))
-    imagen_mostrada=ImageTk.PhotoImage(imagen)
-    imagen_label=tkinter.Label(canvas,image=imagen_mostrada)
-    imagen_label.pack()
-
-    ventana3.mainloop()
-
-ventana=ctk.CTk()
-ventana.title("Pantalla Principal")
-ventana.geometry("800x512")
-ventana.resizable(False,False)
-ctk.set_appearance_mode("dark")
-
-#Pantalla de las opciones
-pantalla=ctk.CTkFrame(ventana)
-pantalla.pack(fill=tkinter.BOTH, expand=True)
-
+    subprocess.Popen(["python", "Opcion3.py"])
 
 cargar_contenidoMenu()
 ventana.mainloop()
